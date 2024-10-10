@@ -23,22 +23,30 @@ baselineOnMigrate = true
 
 [environments.development]
 url = "jdbc:postgresql://localhost:5432/widgetdev"
+user = "postgres"
+password = "123123SZZmiss"
 schemas = [ "public" ]
 displayName = "Development database"
 
 [environments.shadow]
 url = "jdbc:postgresql://localhost:5432/widgetshadow"
+user = "postgres"
+password = "123123SZZmiss"
 schemas = [ "public" ]
 displayName = "Shadow database"
 provisioner = "clean"
 
 [environments.Test]
 url = "jdbc:postgresql://localhost:5432/widgettest"
+user = "postgres"
+password = "123123SZZmiss"
 schemas = [ "public" ]
 displayName = "Test"
 
 [environments.Prod]
 url = "jdbc:postgresql://localhost:5432/widgetprod"
+user = "postgres"
+password = "123123SZZmiss"
 schemas = [ "public" ]
 displayName = "Production"
 
@@ -46,3 +54,10 @@ displayName = "Production"
 url = "jdbc:postgresql://localhost:5432/widgetbuild"
 schemas = [ "public" ]
 displayName = "Build"
+
+[environments.check]
+url = "jdbc:postgresql://localhost:5432/widgetcheck"
+user = "postgres"
+password = "123123SZZmiss"
+schemas = [ "public" ]
+displayName = "check"
