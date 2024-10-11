@@ -1,0 +1,24 @@
+table "public"."bank_tags" {
+  owner = postgres
+  columns = (
+    column "product_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "tag_id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.bank_tags_tag_id_seq'::regclass)
+    }
+    column "production_date" {
+      type = character varying(20)
+    }
+    column "tag_peni" {
+      type = character varying(20)
+    }
+    column "item_number" {
+      type = character varying(20)
+    }
+  )
+}
+
