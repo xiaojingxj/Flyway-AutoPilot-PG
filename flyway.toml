@@ -20,6 +20,7 @@ locations = [ "filesystem:migrations" ]
 validateMigrationNaming = true
 baselineVersion = "001_20230821140817"
 baselineOnMigrate = true
+publishResult = true
 
 [environments.development]
 url = "jdbc:postgresql://localhost:5432/widgetdev"

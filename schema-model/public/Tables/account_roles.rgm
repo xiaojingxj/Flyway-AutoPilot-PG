@@ -1,0 +1,17 @@
+table "public"."account_roles" {
+  owner = postgres
+  columns = (
+    column "user_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "role_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "grant_date" {
+      type = timestamp without time zone
+    }
+  )
+}
+
