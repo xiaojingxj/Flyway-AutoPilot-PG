@@ -10,21 +10,15 @@ pipeline {
             }
         }
 
-        stage('Migrate from widgetdev to widgettest') {
+        stage('Migrate to widgettest') {
             steps {
                 script {
                     // Use Jenkins credentials for PostgreSQL connection details
                     withCredentials([
-                        string(credentialsId: 'FLYWAY_URL_WIDGETDEV', variable: 'FLYWAY_URL_WIDGETDEV'),
                         string(credentialsId: 'FLYWAY_URL_WIDGETTEST', variable: 'FLYWAY_URL_WIDGETTEST'),
                         usernamePassword(credentialsId: 'FLYWAY_DB_CREDENTIALS', usernameVariable: 'FLYWAY_DB_USER', passwordVariable: 'FLYWAY_DB_PASSWORD')
                     ]) {
-                        // First, migrate changes on the widgetdev database
-                        sh """
-                        flyway -url=$FLYWAY_URL_WIDGETDEV -user=$FLYWAY_DB_USER -password=$FLYWAY_DB_PASSWORD -locations=filesystem:./sql/migrations migrate
-                        """
-
-                        // Now, migrate changes on the widgettest database
+                        // Migrate changes on the widgettest database
                         sh """
                         flyway -url=$FLYWAY_URL_WIDGETTEST -user=$FLYWAY_DB_USER -password=$FLYWAY_DB_PASSWORD -locations=filesystem:./sql/migrations migrate
                         """
@@ -35,17 +29,17 @@ pipeline {
 
         stage('Clean Up') {
             steps {
-                echo "Migration completed successfully"
+                echo "Migration to widgettest completed successfully"
             }
         }
     }
 
     post {
         success {
-            echo "Database migration completed successfully."
+            echo "Database migration to widgettest completed successfully."
         }
         failure {
-            echo "Database migration failed."
+            echo "Database migration to widgettest failed."
         }
     }
 }
