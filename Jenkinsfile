@@ -19,7 +19,7 @@ pipeline {
                     ]) {
                         // Migrate changes on the widgettest database
                         sh """
-                        /var/jenkins_home/flyway-9.22.3/flyway -url=$FLYWAY_URL_WIDGETTEST -user=$FLYWAY_DB_USER -password=$FLYWAY_DB_PASSWORD -locations=filesystem:./migrations migrate
+                        /var/jenkins_home/flyway-10.20.0/flyway -url=$FLYWAY_URL_WIDGETTEST -user=$FLYWAY_DB_USER -password=$FLYWAY_DB_PASSWORD -locations=filesystem:./migrations migrate
                         """
                     }
                 }
