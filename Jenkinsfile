@@ -6,11 +6,10 @@ pipeline {
             steps {
                 // Clone the repository that contains Flyway migration scripts
                 git url: 'https://github.com/xiaojingxj/Flyway-AutoPilot-PG', branch: 'main'
-                
             }
         }
 
-        stage('Migrate to widgettest') {
+        stage('Apply Migrations to Target DB (widgettest)') {
             steps {
                 script {
                     // Use Jenkins credentials for PostgreSQL connection details
@@ -18,9 +17,9 @@ pipeline {
                         string(credentialsId: 'FLYWAY_URL_WIDGETTEST', variable: 'FLYWAY_URL_WIDGETTEST'),
                         usernamePassword(credentialsId: 'FLYWAY_DB_CREDENTIALS', usernameVariable: 'FLYWAY_DB_USER', passwordVariable: 'FLYWAY_DB_PASSWORD')
                     ]) {
-                        // Migrate changes on the widgettest database
+                        // Apply migration changes on the widgettest database
                         sh """
-                        flyway -url=$FLYWAY_URL_WIDGETTEST -user=$FLYWAY_DB_USER -password=$FLYWAY_DB_PASSWORD -locations=filesystem:./sql/migrations migrate
+                        flyway -url=$FLYWAY_URL_WIDGETTEST -user=$FLYWAY_DB_USER -password=$FLYWAY_DB_PASSWORD -locations=filesystem:./migrations migrate
                         """
                     }
                 }

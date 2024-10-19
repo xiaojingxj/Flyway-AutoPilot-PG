@@ -1,0 +1,29 @@
+table "public"."tab_test_1" {
+  primaryKey = {
+    columns = [
+      "id"
+    ]
+    name = "tab_test_1_pkey"
+    objectType = primaryKey
+  }
+  owner = postgres
+  columns = (
+    column "id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.tab_test_1_id_seq'::regclass)
+    }
+    column "name" {
+      type = character varying(255)
+      null = NOT NULL
+    }
+    column "description" {
+      type = text
+    }
+    column "created_at" {
+      type = timestamp without time zone
+      default = CURRENT_TIMESTAMP
+    }
+  )
+}
+
