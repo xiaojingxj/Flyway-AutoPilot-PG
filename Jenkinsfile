@@ -18,6 +18,11 @@ pipeline {
                         usernamePassword(credentialsId: 'FLYWAY_DB_CREDENTIALS', usernameVariable: 'FLYWAY_DB_USER', passwordVariable: 'FLYWAY_DB_PASSWORD')
                     ]) {
                         // Migrate changes on the widgettest database
+                        // print the FLyway URL and DB user and password
+                        echo "FLYWAY_URL_WIDGETTEST: $FLYWAY_URL_WIDGETTEST"
+                        echo "FLYWAY_DB_USER: $FLYWAY_DB_USER"
+                        echo "FLYWAY_DB_PASSWORD: $FLYWAY_DB_PASSWORD"
+                        
                         sh """
                         /var/jenkins_home/flyway-10.20.0/flyway -url=$FLYWAY_URL_WIDGETTEST -user=$FLYWAY_DB_USER -password=$FLYWAY_DB_PASSWORD -locations=filesystem:./migrations migrate
                         """
