@@ -1,0 +1,30 @@
+table "public"."bill" {
+  primaryKey = {
+    columns = [
+      "id"
+    ]
+    name = "bill_pkey"
+    objectType = primaryKey
+  }
+  owner = postgres
+  columns = (
+    column "id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('public.bill_id_seq'::regclass)
+    }
+    column "amount" {
+      type = numeric(10,2)
+      null = NOT NULL
+    }
+    column "due_date" {
+      type = date
+      null = NOT NULL
+    }
+    column "paid" {
+      type = boolean
+      default = false
+    }
+  )
+}
+
