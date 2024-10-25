@@ -9,4 +9,3 @@ sequence "public"."bill_id_seq" {
   owner = postgres
   ownedBy = "public"."bill"."id"
 }
-
